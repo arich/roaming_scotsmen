@@ -1,5 +1,9 @@
 Traveler::Application.routes.draw do
-  resources :attractions
+  resources :attractions do
+    collection do
+      get 'search'
+    end
+  end
 
   resources :categories
 
