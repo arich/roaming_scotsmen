@@ -3,8 +3,10 @@ Traveler::Application.routes.draw do
 
   resources :categories
 
-  resources :cities
-
+  resources :cities do
+    resources :categories
+    resources :attractions
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -45,7 +47,7 @@ Traveler::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
