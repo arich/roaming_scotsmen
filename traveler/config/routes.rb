@@ -1,5 +1,6 @@
 Traveler::Application.routes.draw do
 
+  get "newyork/index"
   resources :attractions do
     collection do
       get 'search'
