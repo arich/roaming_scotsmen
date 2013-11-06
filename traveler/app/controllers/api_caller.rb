@@ -1,7 +1,7 @@
 class ApiCaller < ApplicationController
   include HTTParty
   def initialize
-    self.class.default_params api_key: "q0X0eBgwsN965QIZcDMCfDvrAqoDLRuU"
+    self.class.default_params api_key: "XbLv4GK8Nu2RLthAtNiDFqsKrLb9Ygkp"
     @base_url = "http://api.pearson.com/eyewitness"
     #don't know why the base_uri method isn't working, but it's an easy workaround.
   end

@@ -26,20 +26,13 @@
 <script type="text/javascript">
 handler = Gmaps.build('Google');
 handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-<<<<<<< HEAD
-=======
-
 
 markers = handler.addMarkers(<%=raw @hash.to_json %>);
->>>>>>> d2ce6b8d164422d94beb4f9fe5bf052cdf8cf8b6
-	markers = handler.addMarkers(<%=raw @hash.to_json %>);
+
 	polylines = handler.addPolyline(<%=raw @latlong.to_json %>);
 	handler.bounds.extendWith(markers);
 	handler.fitMapToBounds();
-<<<<<<< HEAD
-});
-=======
 });
 
 </script>
->>>>>>> d2ce6b8d164422d94beb4f9fe5bf052cdf8cf8b6
+
