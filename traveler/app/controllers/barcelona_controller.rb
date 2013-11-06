@@ -12,7 +12,11 @@ class BarcelonaController < ApplicationController
 
 
     @attractions = @api_caller.get_attractions_for_city("barcelona", query_hash)["list"]["link"]
-
+    if not @attractions.parsed_response["list"] == nil
+      @attractions = @attractions["list"]["link"] 
+    else
+      @attractions = {}
+    end
     @hash = Gmaps4rails.build_markers(@attractions) do |attraction, marker|
       marker.lat attraction["@latitude"]
       marker.lng attraction["@longitude"]
