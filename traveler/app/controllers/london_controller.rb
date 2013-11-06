@@ -17,6 +17,11 @@ class LondonController < ApplicationController
       marker.lng attraction["@longitude"]
       marker.infowindow attraction["@title"]
     end
+  
+    @latlong= []
+    @attractions.each do |attraction|
+      @latlong.push({lat: attraction["@latitude"], lng: attraction["@longitude"]})
+    end
   end
 
 
