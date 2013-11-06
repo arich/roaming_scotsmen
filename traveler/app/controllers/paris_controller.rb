@@ -16,7 +16,6 @@ class ParisController < ApplicationController
     else
       @attractions = {}
     end
-      
 
     @hash = Gmaps4rails.build_markers(@attractions) do |attraction, marker|
       marker.lat attraction["@latitude"]

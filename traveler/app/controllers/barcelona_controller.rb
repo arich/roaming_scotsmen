@@ -11,7 +11,7 @@ class BarcelonaController < ApplicationController
     query_hash[:tag] = :tg_info
 
 
-    @attractions = @api_caller.get_attractions_for_city("barcelona", query_hash)["list"]["link"]
+    @attractions = @api_caller.get_attractions_for_city("barcelona", query_hash)
     if not @attractions.parsed_response["list"] == nil
       @attractions = @attractions["list"]["link"] 
     else
