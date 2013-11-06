@@ -8,7 +8,7 @@ class WashingtonController < ApplicationController
     push_if_not_nil :category, query_hash
     push_if_not_nil :lat, query_hash
     push_if_not_nil :long, query_hash
-    push_if_not_nil :tag, query_hash
+    query_hash[:tag] = :tg_info
 
     @attractions = @api_caller.get_attractions_for_city("washington", query_hash)["list"]["link"]
 
