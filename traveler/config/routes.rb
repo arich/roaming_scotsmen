@@ -1,5 +1,13 @@
 Traveler::Application.routes.draw do
 
+  get "washington/index"
+  get "venice/index"
+  get "rome/index"
+  get "prague/index"
+  get "paris/index"
+  get "london/index"
+  get "berlin/index"
+  get "barcelona/index"
   get "newyork/index"
   resources :attractions do
     collection do

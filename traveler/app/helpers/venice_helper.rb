@@ -1,0 +1,2 @@
+module VeniceHelper
+end
