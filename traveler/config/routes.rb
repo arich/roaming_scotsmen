@@ -1,14 +1,11 @@
 Traveler::Application.routes.draw do
-<<<<<<< HEAD
-  get "welcome/index"
-  resources :attractions
-=======
+
   resources :attractions do
     collection do
       get 'search'
     end
   end
->>>>>>> 7a94fef032079a654854b145d1779756b22312fd
+
 
   resources :categories
 
