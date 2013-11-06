@@ -29,8 +29,14 @@ class AttractionsController < ApplicationController
     push_if_not_nil :category, query_hash
     push_if_not_nil :lat, query_hash
     push_if_not_nil :long, query_hash
+    push_if_not_nil :tag, query_hash
 
     @attractions = @api_caller.get_attractions_for_city(params[:city], query_hash)["list"]["link"]
+
+    @hash = Gmaps4rails.build_markers(@attractions) do |attraction, marker|
+      marker.lat attraction["@latitude"]
+      marker.lng attraction["@longitude"]
+    end
   end
 
   def push_if_not_nil param, hash
@@ -96,6 +102,6 @@ class AttractionsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def attraction_params
-    params.require(:attraction).permit(:q, :category, :lat, :long, :city)
+    params.require(:attraction).permit(:q, :category, :lat, :long, :city, :tag)
   end
 end
