@@ -7,6 +7,4 @@ json.array!(@attractions) do |attraction|
   json.categories attraction["@categories"]
   json.lat attraction["@latitude"]
   json.long attraction["@longitude"]
-
-  json.url attraction_url(attraction, format: :json)
 end
