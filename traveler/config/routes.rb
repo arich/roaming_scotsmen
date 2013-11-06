@@ -1,11 +1,21 @@
 Traveler::Application.routes.draw do
+<<<<<<< HEAD
   get "welcome/index"
   resources :attractions
+=======
+  resources :attractions do
+    collection do
+      get 'search'
+    end
+  end
+>>>>>>> 7a94fef032079a654854b145d1779756b22312fd
 
   resources :categories
 
-  resources :cities
-
+  resources :cities do
+    resources :categories
+    resources :attractions
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -46,7 +56,7 @@ Traveler::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

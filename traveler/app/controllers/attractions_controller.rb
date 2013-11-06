@@ -1,6 +1,10 @@
 class AttractionsController < ApplicationController
   before_action :set_attraction, only: [:show, :edit, :update, :destroy]
 
+  def initialize
+    @api_caller = ApiCaller.new
+  end
+
   # GET /attractions
   # GET /attractions.json
   def index
@@ -10,6 +14,29 @@ class AttractionsController < ApplicationController
   # GET /attractions/1
   # GET /attractions/1.json
   def show
+    puts params
+
+  end
+
+  def search
+    if params[:city].nil? 
+      raise ArgumentError
+    end
+
+    puts params
+    query_hash = {}
+    push_if_not_nil :q, query_hash
+    push_if_not_nil :category, query_hash
+    push_if_not_nil :lat, query_hash
+    push_if_not_nil :long, query_hash
+
+    @attractions = @api_caller.get_attractions_for_city(params[:city], query_hash)["list"]["link"]
+  end
+
+  def push_if_not_nil param, hash
+    if not params[param].nil?
+      hash[param] = params[param]
+    end
   end
 
   # GET /attractions/new
@@ -62,13 +89,13 @@ class AttractionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_attraction
-      @attraction = Attraction.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_attraction
+    @attraction = Attraction.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def attraction_params
-      params.require(:attraction).permit(:name, :description, :lat, :long)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def attraction_params
+    params.require(:attraction).permit(:q, :category, :lat, :long, :city)
+  end
 end

@@ -1,15 +1,17 @@
 class CitiesController < ApplicationController
-  before_action :set_city, only: [:show, :edit, :update, :destroy]
-
+  def initialize
+    @api_caller = ApiCaller.new
+  end
   # GET /cities
   # GET /cities.json
   def index
-    @cities = City.all
+    @cities = @api_caller.get_list_of_cities
   end
 
   # GET /cities/1
   # GET /cities/1.json
   def show
+    @city = @api_caller.get_categories_for_city params[:id]
   end
 
   # GET /cities/new
